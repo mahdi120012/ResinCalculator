@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         setSplashy()
 
+        setSplashy()
+        setSplashy()
+        setSplashy()
         //salam
 
 
