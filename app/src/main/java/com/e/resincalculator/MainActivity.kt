@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setSplashy()
-
+    s
         //line zir baraye update automatic ee.
         val appUpdater = AppUpdater(this).setUpdateFrom(UpdateFrom.JSON)
             .setUpdateJSON("http://robika.ir/ultitled/practice/resin_epoxy_update_checker.json")
