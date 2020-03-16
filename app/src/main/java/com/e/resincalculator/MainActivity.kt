@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         setSplashy()
 
+        //salam
+
 
         //line zir baraye update automatic ee.
         val appUpdater = AppUpdater(this).setUpdateFrom(UpdateFrom.JSON)
