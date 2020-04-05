@@ -70,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
-                    android:fontFamily="@font/sahel_bold"
+                    android:fontFamily="@font/iranyekanregular"
                     android:text="! محاسبه کن"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
@@ -101,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="نسبت ترکیب"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/etGhotrAndArzA"
                     app:layout_constraintStart_toStartOf="@+id/etGhotrAndArzA"
@@ -112,6 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="چگالی"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/etErtefa"
                     app:layout_constraintStart_toStartOf="@+id/etErtefa"
@@ -141,6 +143,7 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:text="1.13"
+                    android:fontFamily="@font/iranyekanregular"
                     android:digits="0123456789."
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/etDarsadTaghsim"
@@ -159,6 +162,7 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:text="100"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/etDarsadTaghsim"
                     app:layout_constraintStart_toStartOf="parent"
@@ -174,6 +178,7 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="32dp"
                     android:ems="10"
+                    android:fontFamily="@font/iranyekanregular"
                     android:gravity="center"
                     android:inputType="number"
                     android:text="50"
@@ -186,7 +191,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="ارتفاع"
+                    android:text="h ارتفاع"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -197,7 +203,8 @@
                     android:id="@+id/txArzA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="عرض"
+                    android:text="a عرض"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintEnd_toStartOf="@+id/txToolB"
@@ -211,7 +218,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="طول"
+                    android:text="b طول"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/textView5"
@@ -227,6 +235,7 @@
                     android:layout_marginRight="29dp"
                     android:digits="0123456789."
                     android:ems="10"
+                    android:fontFamily="@font/iranyekanregular"
                     android:gravity="center"
                     android:inputType="number"
                     android:maxLength="4"
@@ -250,6 +259,7 @@
                     android:inputType="number"
                     android:maxLength="4"
                     android:textSize="16sp"
+                    android:fontFamily="@font/iranyekanregular"
                     app:layout_constraintBottom_toBottomOf="@+id/etToolB"
                     app:layout_constraintEnd_toStartOf="@+id/etToolB"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -264,6 +274,7 @@
                     android:layout_marginRight="8dp"
                     android:digits="0123456789."
                     android:ems="10"
+                    android:fontFamily="@font/iranyekanregular"
                     android:gravity="center"
                     android:inputType="number"
                     android:maxLength="4"
@@ -280,6 +291,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="( رزین و هاردنر )"
+                    android:fontFamily="@font/iranyekanregular"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView9"
                     app:layout_constraintStart_toStartOf="@+id/textView9"
@@ -289,9 +301,10 @@
                     android:id="@+id/dasdasd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="اپوکسی ۱،۱ گرم/سانتی متر به توان سه"
+                    android:fontFamily="@font/iranyekanregular"
+                    android:text="(Epoxy 1,1 g/cm^3)"
                     android:textSize="14sp"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="@+id/textView10"
                     app:layout_constraintStart_toStartOf="@+id/textView10"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -354,13 +367,14 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
-
                             android:id="@+id/radioButtonDayere"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#2d7d94"
+                            />
 
                         <RadioButton
-
+                            android:buttonTint="#2d7d94"
                             android:id="@+id/radioButtonMoraba"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -373,6 +387,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="مقطع دایره"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toBottomOf="@+id/radioGroupDayereOrMoraba"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroupDayereOrMoraba" />
 
@@ -381,6 +396,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
+                        android:fontFamily="@font/iranyekanregular"
                         android:text="مقطع مربع"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroupDayereOrMoraba"
                         app:layout_constraintTop_toTopOf="@+id/radioGroupDayereOrMoraba" />
@@ -405,11 +421,13 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
+                            android:buttonTint="#2d7d94"
                             android:id="@+id/radioButtonMm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
 
                         <RadioButton
+                            android:buttonTint="#2d7d94"
                             android:id="@+id/radioButtonCm"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -421,6 +439,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="سانتی متر"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroup"
                         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -430,6 +449,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="میلیمتر"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toTopOf="@+id/textView4"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroup"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -613,7 +633,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="9dp"
-                        android:fontFamily="@font/sahel"
+                        android:fontFamily="@font/iranyekanregular"
                         android:text="کیلو گرم"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -629,7 +649,7 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginTop="8dp"
                         android:text="0"
-                        app:fontFamily="@font/sahel"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -681,7 +701,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="12dp"
                         android:text="هاردنر"
-                        app:fontFamily="@font/sahel_bold"
+                        app:fontFamily="@font/iranyekanwebbold"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textView23"
@@ -693,7 +713,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
                         android:text="رزین"
-                        app:fontFamily="@font/sahel_bold"
+                        app:fontFamily="@font/iranyekanwebbold"
                         app:layout_constraintEnd_toStartOf="@+id/textView22"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -734,6 +754,7 @@
                         android:layoutDirection="rtl"
                         android:textDirection="rtl"
                         android:textSize="16sp"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/textView23"
                         app:layout_constraintStart_toStartOf="@+id/textView23"
@@ -748,6 +769,7 @@
                         android:layoutDirection="rtl"
                         android:textDirection="rtl"
                         android:textSize="16sp"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/textView22"
                         app:layout_constraintStart_toStartOf="@+id/textView22"
@@ -775,20 +797,24 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
-                        android:checkedButton="@id/radioButton"
+                        android:checkedButton="@id/radioButtonKg"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <RadioButton
-                            android:id="@+id/radioButton"
+                            android:id="@+id/radioButtonKg"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#2d7d94"
+                            />
 
                         <RadioButton
                             android:id="@+id/radioButtonGeram"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:buttonTint="#2d7d94"
+                            />
 
                     </RadioGroup>
 
@@ -799,6 +825,7 @@
                         android:layout_marginEnd="2dp"
                         android:layout_marginRight="2dp"
                         android:text="Kg"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toTopOf="@+id/textView12"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -810,13 +837,14 @@
                         android:layout_marginEnd="2dp"
                         android:layout_marginRight="2dp"
                         android:text="g"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/radioGroup3"
                         app:layout_constraintTop_toBottomOf="@+id/textView7" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:fontFamily="@font/sahel_bold"
+                    android:fontFamily="@font/iranyekanwebbold"
                     android:textSize="16sp"
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
@@ -844,7 +872,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="9dp"
-                        android:fontFamily="@font/sahel"
+                        android:fontFamily="@font/iranyekanregular"
                         android:text="لیتر"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -860,7 +888,7 @@
                         android:layout_marginLeft="6dp"
                         android:layout_marginTop="8dp"
                         android:text="0"
-                        app:fontFamily="@font/sahel"
+                        android:fontFamily="@font/iranyekanregular"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -888,7 +916,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:fontFamily="@font/sahel_bold"
+                    android:fontFamily="@font/iranyekanwebbold"
                     android:textSize="16sp"
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"

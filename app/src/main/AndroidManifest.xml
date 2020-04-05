@@ -4,12 +4,19 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--baraye transparent shodan icon ic_luncher bayad az ebteda ic luncheri besazim ke
+    background layeresh 0 darsad transparent bashe va shapesh barabar none bashe va
+    sepas drwable ax png entekhab konim
+    va sepas maghadir icon va round icon ro dar zir barabar @mipmap/ic_launcher gharar bedim
+    va sepas dar bakhsh @mipmap/ic_launcher meghdar backgroud ra barabar:
+    android:drawable="@color/white" gharad bedim ta toye android haye balatar backgroundesh
+    white beshe
+    -->
     <application
         android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">

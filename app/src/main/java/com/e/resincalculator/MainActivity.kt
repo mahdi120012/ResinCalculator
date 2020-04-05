@@ -1,20 +1,26 @@
 package com.e.resincalculator
 
-import android.net.Uri
+import android.content.Context
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.github.javiersantos.appupdater.AppUpdater
 import com.github.javiersantos.appupdater.enums.UpdateFrom
+import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
 import com.rbddevs.splashy.Splashy
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.customdialog.*
+import kotlinx.android.synthetic.main.navigation_items.*
+import kotlinx.android.synthetic.main.navigation_main_activity.*
 import kotlinx.android.synthetic.main.toolbar_top.*
 import java.text.DecimalFormat
 import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
     private var rAdapter:RecyclerAdapter? = null
@@ -25,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     var ounce = 0.0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.navigation_main_activity)
 
         setSplashy()
 
@@ -35,6 +41,56 @@ class MainActivity : AppCompatActivity() {
             .setTitleOnUpdateAvailable("بروزرسانی جدید موجوده!").setButtonUpdate("بروزرسانی")
             .setButtonDismiss("فعلا نه").setButtonDoNotShowAgain("")
         appUpdater.start()
+
+
+        imgNavigationTop.setOnClickListener{
+            if (drawer_layout.isDrawerOpen(Gravity.LEFT)) {
+                drawer_layout.closeDrawer(Gravity.LEFT)
+            } else {
+                drawer_layout.openDrawer(Gravity.LEFT)
+            }
+        }
+
+        txAboutMe.setOnClickListener{
+            if (drawer_layout.isDrawerOpen(Gravity.LEFT)) {
+                drawer_layout.closeDrawer(Gravity.LEFT)
+            }
+
+            val inflater =
+                getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val customView: View = inflater.inflate(R.layout.customdialog, null)
+
+            MaterialStyledDialog.Builder(this)
+                .setCustomView(customView)
+                .setHeaderDrawable(R.drawable.ic_phonelink_black_24dp)
+                .setHeaderScaleType(ImageView.ScaleType.FIT_CENTER)
+                .setHeaderColorInt(Color.WHITE)
+                .withDialogAnimation(true)
+                .show()
+        }
+
+
+        txReset.setOnClickListener{
+
+            etErtefa.setText("")
+            etToolB.setText("")
+            etGhotrAndArzA.setText("")
+            etTarakomEpoxy.setText("1.13")
+            etDarsadTaghsim.setText("50")
+            etDarsadKol.setText("100")
+            textView11.setText("0")
+            txLitaaar.setText("0")
+            txHarder.setText("")
+            txResin.setText("")
+            drawer_layout.closeDrawer(Gravity.LEFT)
+        }
+
+
+        txExit.setOnClickListener{
+            finish()
+        }
+
+        nav_footer_txVesionCode.text = "نسخه " + EnglishNumberToPersian().convert(AppVersionName.getVersionName(this))
 
 
         //Toast.makeText(this,Math.PI.toString(),Toast.LENGTH_LONG).show()
@@ -77,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             imgOstovaneh.visibility = View.GONE
             txToolB.visibility = View.VISIBLE
             etToolB.visibility = View.VISIBLE
-            txArzA.setText("عرض")
+            txArzA.setText("عرض a")
         }
 
         radioButtonMoraba.setOnClickListener{
@@ -86,7 +142,7 @@ class MainActivity : AppCompatActivity() {
             imgMokaab.visibility = View.GONE
             txToolB.visibility = View.INVISIBLE
             etToolB.visibility = View.INVISIBLE
-            txArzA.setText("قطر")
+            txArzA.setText("d قطر")
 
         }
 
@@ -127,35 +183,35 @@ class MainActivity : AppCompatActivity() {
                     if(txMoredNiyazDar.text.toString().equals("گرم")){
 
                         var totalHarder = geram/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder) + " "+txMoredNiyazDar.text.toString())
+                        txHarder.setText(String.format("%.3f", totalHarder) + " "+txMoredNiyazDar.text.toString())
 
                         var totalResin = geram - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin) + " "+txMoredNiyazDar.text.toString())
+                        txResin.setText(String.format("%.3f", totalResin) + " "+txMoredNiyazDar.text.toString())
 
                     }else if(txMoredNiyazDar.text.toString().equals("کیلوگرم")){
 
                         var totalHarder = kilograms/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder) + " "+txMoredNiyazDar.text.toString())
+                        txHarder.setText(String.format("%.3f", totalHarder) + " "+txMoredNiyazDar.text.toString())
 
                         var totalResin = kilograms - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin) + " "+txMoredNiyazDar.text.toString())
+                        txResin.setText(String.format("%.3f", totalResin) + " "+txMoredNiyazDar.text.toString())
 
                     }else if(txMoredNiyazDar.text.toString().equals("جرم")){
 
                         var totalHarder = pound/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder) + " "+txMoredNiyazDar.text.toString())
+                        txHarder.setText(String.format("%.3f", totalHarder) + " "+txMoredNiyazDar.text.toString())
 
                         var totalResin = pound - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin) + " "+txMoredNiyazDar.text.toString())
+                        txResin.setText(String.format("%.3f", totalResin) + " "+txMoredNiyazDar.text.toString())
 
                     }else if(txMoredNiyazDar.text.toString().equals("اونس")){
 
 
                         var totalHarder = ounce/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder) + " "+txMoredNiyazDar.text.toString())
+                        txHarder.setText(String.format("%.3f", totalHarder) + " "+txMoredNiyazDar.text.toString())
 
                         var totalResin = ounce - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin) + " "+txMoredNiyazDar.text.toString())
+                        txResin.setText(String.format("%.3f", totalResin) + " "+txMoredNiyazDar.text.toString())
                     }
 
                     spinnerMoredNiyazDar.setSelection(0)
@@ -194,7 +250,7 @@ class MainActivity : AppCompatActivity() {
                         imgOstovaneh.visibility = View.GONE
                         txToolB.visibility = View.VISIBLE
                         etToolB.visibility = View.VISIBLE
-                        txArzA.setText("عرض آ")
+                        txArzA.setText("عرض a")
 
 
                     }else{
@@ -202,7 +258,7 @@ class MainActivity : AppCompatActivity() {
                         imgMokaab.visibility = View.GONE
                         txToolB.visibility = View.INVISIBLE
                         etToolB.visibility = View.INVISIBLE
-                        txArzA.setText("قطر د")
+                        txArzA.setText("قطر d")
 
                     }
                     //etCityName.hint = "نام شهر"
@@ -213,6 +269,232 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>?) {}
+        }
+
+        radioButtonGeram.setOnClickListener{
+            if (radioButtonCm.isChecked) {
+                var ertefa = etErtefa.text.toString().toDouble()
+
+                var toolB = etToolB.text.toString().toDouble()
+                var arzA = etGhotrAndArzA.text.toString().toDouble()
+
+                var hajmKol = (ertefa * toolB * arzA).toString().toDouble()
+                var tarakomEpoxy = etTarakomEpoxy.text.toString().toDouble()
+
+                geram = hajmKol * tarakomEpoxy
+                var liter = (hajmKol / 1000).toDouble()
+                txLitaaar.setText(String.format("%.3f", liter))
+
+                kilograms = geram / 1000
+                textView11.setText(String.format("%.3f", kilograms))
+
+                pound = kilograms * 2.20
+                txGermOrPound.setText(String.format("%.2f", pound))
+
+
+                ounce = kilograms * 35.274
+                txOunce.setText(String.format("%.2f", ounce))
+
+                val twoDForm = DecimalFormat("#.##")
+                val roundUpLitr = liter.toDouble()
+                txLiter.setText(twoDForm.format(roundUpLitr).toString())
+
+                var darsadKol = etDarsadKol.text.toString().toDouble()
+                var darsadTaghsim = etDarsadTaghsim.text.toString().toDouble()
+                var meghdarDarsad = ((darsadKol + darsadTaghsim) / darsadTaghsim)
+
+
+                var totalHarder = kilograms / meghdarDarsad
+                txHarder.setText(
+                    String.format(
+                        "%.3f",
+                        totalHarder*1000
+                    ) + " " + txMoredNiyazDar.text.toString()
+                )
+
+                var totalResin = kilograms - totalHarder
+                txResin.setText(
+                    String.format(
+                        "%.3f",
+                        totalResin*1000
+                    ) + " " + txMoredNiyazDar.text.toString()
+                )
+
+
+
+            }else{
+
+                var ertefa = etErtefa.text.toString().toDouble()
+
+                var toolB = etToolB.text.toString().toDouble()
+                var arzA = etGhotrAndArzA.text.toString().toDouble()
+
+                var hajmKol = (ertefa * toolB * arzA).toString().toDouble()
+                var tarakomEpoxy = etTarakomEpoxy.text.toString().toDouble()
+
+                //val formatter: NumberFormat = DecimalFormat("#.##")
+                geram = hajmKol * tarakomEpoxy
+                var liter = (hajmKol / 1000).toDouble()
+                txLitaaar.setText(String.format("%.3f", liter/1000))
+                //txLitaaar.setText(liter.toString())
+
+
+                kilograms = geram / 1000
+                textView11.setText(String.format("%.3f", kilograms/1000))
+
+                pound = kilograms * 2.20
+                txGermOrPound.setText(String.format("%.2f", pound))
+
+
+                ounce = kilograms * 35.274
+                txOunce.setText(String.format("%.2f", ounce))
+
+
+                //var hajmKolDb =hajmKol.toDouble()
+                //var liter = (hajmKol/1000).toDouble()
+
+                val twoDForm = DecimalFormat("#.##")
+                val roundUpLitr = liter.toDouble()
+                txLiter.setText(twoDForm.format(roundUpLitr).toString())
+
+                var darsadKol = etDarsadKol.text.toString().toDouble()
+                var darsadTaghsim = etDarsadTaghsim.text.toString().toDouble()
+                var meghdarDarsad = ((darsadKol + darsadTaghsim) / darsadTaghsim)
+
+
+                var totalHarder = kilograms / meghdarDarsad
+                txHarder.setText(
+                    String.format(
+                        "%.3f",
+                        totalHarder
+                    ) + " " + txMoredNiyazDar.text.toString()
+                )
+
+                var totalResin = kilograms - totalHarder
+                txResin.setText(
+                    String.format(
+                        "%.3f",
+                        totalResin
+                    ) + " " + txMoredNiyazDar.text.toString()
+                )
+            }
+
+        }
+
+
+        radioButtonKg.setOnClickListener{
+            if (radioButtonCm.isChecked) {
+
+                var ertefa = etErtefa.text.toString().toDouble()
+
+                var toolB = etToolB.text.toString().toDouble()
+                var arzA = etGhotrAndArzA.text.toString().toDouble()
+
+                var hajmKol = (ertefa * toolB * arzA).toString().toDouble()
+                var tarakomEpoxy = etTarakomEpoxy.text.toString().toDouble()
+
+                //val formatter: NumberFormat = DecimalFormat("#.##")
+                geram = hajmKol * tarakomEpoxy
+                var liter = (hajmKol / 1000).toDouble()
+                txLitaaar.setText(String.format("%.3f", liter))
+                //txLitaaar.setText(liter.toString())
+
+
+                kilograms = geram / 1000
+                textView11.setText(String.format("%.3f", kilograms))
+
+                pound = kilograms * 2.20
+                txGermOrPound.setText(String.format("%.2f", pound))
+
+
+                ounce = kilograms * 35.274
+                txOunce.setText(String.format("%.2f", ounce))
+
+
+                //var hajmKolDb =hajmKol.toDouble()
+                //var liter = (hajmKol/1000).toDouble()
+
+                val twoDForm = DecimalFormat("#.##")
+                val roundUpLitr = liter.toDouble()
+                txLiter.setText(twoDForm.format(roundUpLitr).toString())
+
+                var darsadKol = etDarsadKol.text.toString().toDouble()
+                var darsadTaghsim = etDarsadTaghsim.text.toString().toDouble()
+                var meghdarDarsad = ((darsadKol + darsadTaghsim) / darsadTaghsim)
+
+
+                var totalHarder = kilograms / meghdarDarsad
+                txHarder.setText(
+                    String.format(
+                        "%.3f",
+                        totalHarder
+                    ) + " " + "کیلوگرم"
+                )
+
+                var totalResin = kilograms - totalHarder
+                txResin.setText(
+                    String.format(
+                        "%.3f",
+                        totalResin
+                    ) + " " + "کیلوگرم"
+                )
+            }else{
+
+                var ertefa = etErtefa.text.toString().toDouble()
+
+                var toolB = etToolB.text.toString().toDouble()
+                var arzA = etGhotrAndArzA.text.toString().toDouble()
+
+                var hajmKol = (ertefa * toolB * arzA).toString().toDouble()
+                var tarakomEpoxy = etTarakomEpoxy.text.toString().toDouble()
+
+                //val formatter: NumberFormat = DecimalFormat("#.##")
+                geram = hajmKol * tarakomEpoxy
+                var liter = (hajmKol / 1000).toDouble()
+                txLitaaar.setText(String.format("%.3f", liter/1000))
+                //txLitaaar.setText(liter.toString())
+
+
+                kilograms = geram / 1000
+                textView11.setText(String.format("%.3f", kilograms/1000))
+
+                pound = kilograms * 2.20
+                txGermOrPound.setText(String.format("%.2f", pound))
+
+
+                ounce = kilograms * 35.274
+                txOunce.setText(String.format("%.2f", ounce))
+
+
+                //var hajmKolDb =hajmKol.toDouble()
+                //var liter = (hajmKol/1000).toDouble()
+
+                val twoDForm = DecimalFormat("#.##")
+                val roundUpLitr = liter.toDouble()
+                txLiter.setText(twoDForm.format(roundUpLitr).toString())
+
+                var darsadKol = etDarsadKol.text.toString().toDouble()
+                var darsadTaghsim = etDarsadTaghsim.text.toString().toDouble()
+                var meghdarDarsad = ((darsadKol + darsadTaghsim) / darsadTaghsim)
+
+
+                var totalHarder = kilograms / meghdarDarsad
+                txHarder.setText(
+                    String.format(
+                        "%.3f",
+                        totalHarder/1000
+                    ) + " " + "کیلوگرم"
+                )
+
+                var totalResin = kilograms - totalHarder
+                txResin.setText(
+                    String.format(
+                        "%.3f",
+                        totalResin/1000
+                    ) + " " + "کیلوگرم"
+                )
+
+            }
         }
 
         calculate.setOnClickListener{
@@ -238,12 +520,12 @@ class MainActivity : AppCompatActivity() {
                             //val formatter: NumberFormat = DecimalFormat("#.##")
                             geram = hajmKol * tarakomEpoxy
                             var liter = (hajmKol / 1000).toDouble()
-                            txLitaaar.setText(String.format("%.2f", liter))
+                            txLitaaar.setText(String.format("%.3f", liter))
                             //txLitaaar.setText(liter.toString())
 
 
                             kilograms = geram / 1000
-                            textView11.setText(String.format("%.2f", kilograms))
+                            textView11.setText(String.format("%.3f", kilograms))
 
                             pound = kilograms * 2.20
                             txGermOrPound.setText(String.format("%.2f", pound))
@@ -257,7 +539,7 @@ class MainActivity : AppCompatActivity() {
                             //var liter = (hajmKol/1000).toDouble()
 
                             val twoDForm = DecimalFormat("#.##")
-                            val roundUpLitr = String.format("%.3f", liter).toDouble()
+                            val roundUpLitr = liter.toDouble()
                             txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                             var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -268,7 +550,7 @@ class MainActivity : AppCompatActivity() {
                             var totalHarder = kilograms / meghdarDarsad
                             txHarder.setText(
                                 String.format(
-                                    "%.2f",
+                                    "%.3f",
                                     totalHarder*1000
                                 ) + " " + txMoredNiyazDar.text.toString()
                             )
@@ -276,7 +558,7 @@ class MainActivity : AppCompatActivity() {
                             var totalResin = kilograms - totalHarder
                             txResin.setText(
                                 String.format(
-                                    "%.2f",
+                                    "%.3f",
                                     totalResin*1000
                                 ) + " " + txMoredNiyazDar.text.toString()
                             )
@@ -295,12 +577,12 @@ class MainActivity : AppCompatActivity() {
                         //val formatter: NumberFormat = DecimalFormat("#.##")
                         geram = hajmKol * tarakomEpoxy
                         var liter = (hajmKol / 1000).toDouble()
-                        txLitaaar.setText(String.format("%.2f", liter))
+                        txLitaaar.setText(String.format("%.3f", liter))
                         //txLitaaar.setText(liter.toString())
 
 
                         kilograms = geram / 1000
-                        textView11.setText(String.format("%.2f", kilograms))
+                        textView11.setText(String.format("%.3f", kilograms))
 
                         pound = kilograms * 2.20
                         txGermOrPound.setText(String.format("%.2f", pound))
@@ -314,7 +596,7 @@ class MainActivity : AppCompatActivity() {
                         //var liter = (hajmKol/1000).toDouble()
 
                         val twoDForm = DecimalFormat("#.##")
-                        val roundUpLitr = String.format("%.3f", liter).toDouble()
+                        val roundUpLitr = liter.toDouble()
                         txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                         var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -325,7 +607,7 @@ class MainActivity : AppCompatActivity() {
                         var totalHarder = kilograms / meghdarDarsad
                         txHarder.setText(
                             String.format(
-                                "%.2f",
+                                "%.3f",
                                 totalHarder
                             ) + " " + "کیلوگرم"
                         )
@@ -333,7 +615,7 @@ class MainActivity : AppCompatActivity() {
                         var totalResin = kilograms - totalHarder
                         txResin.setText(
                             String.format(
-                                "%.2f",
+                                "%.3f",
                                 totalResin
                             ) + " " + "کیلوگرم"
                         )
@@ -353,12 +635,12 @@ class MainActivity : AppCompatActivity() {
                             //val formatter: NumberFormat = DecimalFormat("#.##")
                             geram = hajmKol * tarakomEpoxy
                             var liter = (hajmKol / 1000).toDouble()
-                            txLitaaar.setText(String.format("%.2f", liter/1000))
+                            txLitaaar.setText(String.format("%.3f", liter/1000))
                             //txLitaaar.setText(liter.toString())
 
 
                             kilograms = geram / 1000
-                            textView11.setText(String.format("%.2f", kilograms/1000))
+                            textView11.setText(String.format("%.3f", kilograms/1000))
 
                             pound = kilograms * 2.20
                             txGermOrPound.setText(String.format("%.2f", pound))
@@ -372,7 +654,7 @@ class MainActivity : AppCompatActivity() {
                             //var liter = (hajmKol/1000).toDouble()
 
                             val twoDForm = DecimalFormat("#.##")
-                            val roundUpLitr = String.format("%.3f", liter).toDouble()
+                            val roundUpLitr = liter.toDouble()
                             txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                             var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -383,7 +665,7 @@ class MainActivity : AppCompatActivity() {
                             var totalHarder = kilograms / meghdarDarsad
                             txHarder.setText(
                                 String.format(
-                                    "%.2f",
+                                    "%.3f",
                                     totalHarder
                                 ) + " " + txMoredNiyazDar.text.toString()
                             )
@@ -391,7 +673,7 @@ class MainActivity : AppCompatActivity() {
                             var totalResin = kilograms - totalHarder
                             txResin.setText(
                                 String.format(
-                                    "%.2f",
+                                    "%.3f",
                                     totalResin
                                 ) + " " + txMoredNiyazDar.text.toString()
                             )
@@ -408,12 +690,12 @@ class MainActivity : AppCompatActivity() {
                         //val formatter: NumberFormat = DecimalFormat("#.##")
                         geram = hajmKol * tarakomEpoxy
                         var liter = (hajmKol / 1000).toDouble()
-                        txLitaaar.setText(String.format("%.2f", liter/1000))
+                        txLitaaar.setText(String.format("%.3f", liter/1000))
                         //txLitaaar.setText(liter.toString())
 
 
                         kilograms = geram / 1000
-                        textView11.setText(String.format("%.2f", kilograms/1000))
+                        textView11.setText(String.format("%.3f", kilograms/1000))
 
                         pound = kilograms * 2.20
                         txGermOrPound.setText(String.format("%.2f", pound))
@@ -427,7 +709,7 @@ class MainActivity : AppCompatActivity() {
                         //var liter = (hajmKol/1000).toDouble()
 
                         val twoDForm = DecimalFormat("#.##")
-                        val roundUpLitr = String.format("%.3f", liter).toDouble()
+                        val roundUpLitr = liter.toDouble()
                         txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                         var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -438,7 +720,7 @@ class MainActivity : AppCompatActivity() {
                         var totalHarder = kilograms / meghdarDarsad
                         txHarder.setText(
                             String.format(
-                                "%.2f",
+                                "%.3f",
                                 totalHarder/1000
                             ) + " " + "کیلوگرم"
                         )
@@ -446,7 +728,7 @@ class MainActivity : AppCompatActivity() {
                         var totalResin = kilograms - totalHarder
                         txResin.setText(
                             String.format(
-                                "%.2f",
+                                "%.3f",
                                 totalResin/1000
                             ) + " " + "کیلوگرم"
                         )
@@ -482,7 +764,7 @@ class MainActivity : AppCompatActivity() {
 
                             var result = (masahat/100)*(ertefa*10)
                             result = result/100
-                            txLitaaar.setText(String.format("%.2f", result))
+                            txLitaaar.setText(String.format("%.3f", result))
 
                             geram = hajmKol * tarakomEpoxy
 
@@ -491,7 +773,7 @@ class MainActivity : AppCompatActivity() {
 
                             //kilograms = geram / 1000
 
-                            textView11.setText(String.format("%.2f", hajmKolAsli))
+                            textView11.setText(String.format("%.3f", hajmKolAsli))
 
                             //textView11.setText((hajmKol*tarakomEpoxy).toString())
 
@@ -508,7 +790,7 @@ class MainActivity : AppCompatActivity() {
                             var liter = (hajmKol/1000).toDouble()
 
                             val twoDForm = DecimalFormat("#.##")
-                            val roundUpLitr = String.format("%.3f", liter).toDouble()
+                            val roundUpLitr = liter.toDouble()
                             txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                             var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -516,10 +798,10 @@ class MainActivity : AppCompatActivity() {
                             var meghdarDarsad=((darsadKol+darsadTaghsim)/darsadTaghsim)
 
                             var totalHarder = hajmKolAsli/meghdarDarsad
-                            txHarder.setText(String.format("%.2f", totalHarder*1000) + " "+txMoredNiyazDar.text.toString())
+                            txHarder.setText(String.format("%.3f", totalHarder*1000) + " "+txMoredNiyazDar.text.toString())
 
                             var totalResin = hajmKolAsli - totalHarder
-                            txResin.setText(String.format("%.2f", totalResin*1000) + " "+txMoredNiyazDar.text.toString())
+                            txResin.setText(String.format("%.3f", totalResin*1000) + " "+txMoredNiyazDar.text.toString())
 
 
                         }else{
@@ -540,7 +822,7 @@ class MainActivity : AppCompatActivity() {
 
                         var result = (masahat/100)*(ertefa*10)
                         result = result/100
-                        txLitaaar.setText(String.format("%.2f", result))
+                        txLitaaar.setText(String.format("%.3f", result))
 
                         geram = hajmKol * tarakomEpoxy
 
@@ -549,7 +831,7 @@ class MainActivity : AppCompatActivity() {
 
                         //kilograms = geram / 1000
 
-                        textView11.setText(String.format("%.2f", hajmKolAsli))
+                        textView11.setText(String.format("%.3f", hajmKolAsli))
 
                         //textView11.setText((hajmKol*tarakomEpoxy).toString())
 
@@ -566,7 +848,7 @@ class MainActivity : AppCompatActivity() {
                         var liter = (hajmKol/1000).toDouble()
 
                         val twoDForm = DecimalFormat("#.##")
-                        val roundUpLitr = String.format("%.3f", liter).toDouble()
+                        val roundUpLitr = liter.toDouble()
                         txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                         var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -574,10 +856,10 @@ class MainActivity : AppCompatActivity() {
                         var meghdarDarsad=((darsadKol+darsadTaghsim)/darsadTaghsim)
 
                         var totalHarder = hajmKolAsli/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder) + " "+"کیلوگرم")
+                        txHarder.setText(String.format("%.3f", totalHarder) + " "+"کیلوگرم")
 
                         var totalResin = hajmKolAsli - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin) + " "+"کیلوگرم")
+                        txResin.setText(String.format("%.3f", totalResin) + " "+"کیلوگرم")
 
                         /*  if(txMoredNiyazDar.text.toString().equals("گرم")){
 
@@ -612,14 +894,14 @@ class MainActivity : AppCompatActivity() {
 
                             var result = (masahat/100)*(ertefa*10)
                             result = result/100
-                            txLitaaar.setText(String.format("%.2f", result/1000))
+                            txLitaaar.setText(String.format("%.3f", result/1000))
 
                             geram = (hajmKol * tarakomEpoxy)/1000
 
                             txGeram.setText(geram.toString())
                             var hajmKolAsli = result*tarakomEpoxy
 
-                            textView11.setText(String.format("%.2f", hajmKolAsli/1000))
+                            textView11.setText(String.format("%.3f", hajmKolAsli/1000))
 
 
                             pound = kilograms*2.20
@@ -633,7 +915,7 @@ class MainActivity : AppCompatActivity() {
                             var liter = (hajmKol/1000).toDouble()
 
                             val twoDForm = DecimalFormat("#.##")
-                            val roundUpLitr = String.format("%.3f", liter).toDouble()
+                            val roundUpLitr = liter.toDouble()
                             txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                             var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -641,10 +923,10 @@ class MainActivity : AppCompatActivity() {
                             var meghdarDarsad=((darsadKol+darsadTaghsim)/darsadTaghsim)
 
                             var totalHarder = hajmKolAsli/meghdarDarsad
-                            txHarder.setText(String.format("%.2f", totalHarder) + " "+txMoredNiyazDar.text.toString())
+                            txHarder.setText(String.format("%.3f", totalHarder) + " "+txMoredNiyazDar.text.toString())
 
                             var totalResin = hajmKolAsli - totalHarder
-                            txResin.setText(String.format("%.2f", totalResin) + " "+txMoredNiyazDar.text.toString())
+                            txResin.setText(String.format("%.3f", totalResin) + " "+txMoredNiyazDar.text.toString())
 
 
                         }else{
@@ -661,14 +943,14 @@ class MainActivity : AppCompatActivity() {
 
                         var result = (masahat/100)*(ertefa*10)
                         result = result/100
-                        txLitaaar.setText(String.format("%.2f", result/1000))
+                        txLitaaar.setText(String.format("%.3f", result/1000))
 
                         geram = (hajmKol * tarakomEpoxy)/1000
 
                         txGeram.setText(geram.toString())
                         var hajmKolAsli = result*tarakomEpoxy
 
-                        textView11.setText(String.format("%.2f", hajmKolAsli/1000))
+                        textView11.setText(String.format("%.3f", hajmKolAsli/1000))
 
 
                         pound = kilograms*2.20
@@ -682,7 +964,7 @@ class MainActivity : AppCompatActivity() {
                         var liter = (hajmKol/1000).toDouble()
 
                         val twoDForm = DecimalFormat("#.##")
-                        val roundUpLitr = String.format("%.3f", liter).toDouble()
+                        val roundUpLitr = liter.toDouble()
                         txLiter.setText(twoDForm.format(roundUpLitr).toString())
 
                         var darsadKol = etDarsadKol.text.toString().toDouble()
@@ -690,10 +972,10 @@ class MainActivity : AppCompatActivity() {
                         var meghdarDarsad=((darsadKol+darsadTaghsim)/darsadTaghsim)
 
                         var totalHarder = hajmKolAsli/meghdarDarsad
-                        txHarder.setText(String.format("%.2f", totalHarder/1000) + " "+"کیلوگرم")
+                        txHarder.setText(String.format("%.3f", totalHarder/1000) + " "+"کیلوگرم")
 
                         var totalResin = hajmKolAsli - totalHarder
-                        txResin.setText(String.format("%.2f", totalResin/1000) + " "+"کیلوگرم")
+                        txResin.setText(String.format("%.3f", totalResin/1000) + " "+"کیلوگرم")
                         }
 
                     }
